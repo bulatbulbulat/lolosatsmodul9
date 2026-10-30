@@ -114,7 +114,7 @@
                 validate: function () { return pass.value ? '' : 'Password wajib diisi.'; }
             }
         ], function () {
-            window.location.href = 'utama.html';
+            window.location.href = 'uploadcv.html';
         });
     }
 
@@ -229,7 +229,7 @@
                 }
             }
         ], function () {
-            window.location.href = 'utama.html';
+            window.location.href = 'uploadcv.html';
         });
     }
 
