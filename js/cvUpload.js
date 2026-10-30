@@ -1,4 +1,6 @@
 // js/cvUpload.js
+import { supabaseClient } from './supabaseClient.js';
+
 
 async function uploadAndScanCV(fileInputId) {
     const fileInput = document.getElementById(fileInputId);

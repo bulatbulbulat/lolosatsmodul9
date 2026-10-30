@@ -1,4 +1,4 @@
-// file koneksi ke supabase
+// js/supabaseClient.js
 
 // Masukkan URL dan Anon Key dari Project Settings Supabase kamu
 const SUPABASE_URL = 'https://khpntopvglptyvxezosb.supabase.co';
