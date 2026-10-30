@@ -1,6 +1,13 @@
 // js/cvUpload.js
 import { supabaseClient } from './supabaseClient.js';
 
+// Pasang event listener otomatis saat halaman selesai dimuat
+document.addEventListener('DOMContentLoaded', () => {
+    const tombolAnalisis = document.getElementById('btn-analisis');
+    if (tombolAnalisis) {
+        tombolAnalisis.addEventListener('click', handleStartAnalysis);
+    }
+});
 
 async function uploadAndScanCV(fileInputId) {
     const fileInput = document.getElementById(fileInputId);
