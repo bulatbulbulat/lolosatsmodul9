@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verifikasi Email</title>
+</head>
+<body>
+
+  <header>
+    <img src="assets/images/send-mail.png" alt="" width="48" height="32">
+    <h1>Verifikasi Email</h1>
+  </header>
+
+  <main>
+
+    <section aria-labelledby="judul-konfirmasi">
+      <header>
+        <h2 id="judul-konfirmasi">Konfirmasi Login Anda</h2>
+        <p id="petunjuk-otp">
+          Kami telah mengirim kode verifikasi 6 digit ke email
+          <strong>user@gmail.com</strong>, silakan periksa email Anda.
+        </p>
+      </header>
+
+      <form action="#" method="post">
+
+        <fieldset aria-describedby="petunjuk-otp">
+          <legend>Kode verifikasi 6 digit</legend>
+
+          <label for="otp-1">Digit 1</label>
+          <input type="text" id="otp-1" name="otp1" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="one-time-code" required>
+
+          <label for="otp-2">Digit 2</label>
+          <input type="text" id="otp-2" name="otp2" inputmode="numeric" pattern="[0-9]" maxlength="1" required>
+
+          <label for="otp-3">Digit 3</label>
+          <input type="text" id="otp-3" name="otp3" inputmode="numeric" pattern="[0-9]" maxlength="1" required>
+
+          <label for="otp-4">Digit 4</label>
+          <input type="text" id="otp-4" name="otp4" inputmode="numeric" pattern="[0-9]" maxlength="1" required>
+
+          <label for="otp-5">Digit 5</label>
+          <input type="text" id="otp-5" name="otp5" inputmode="numeric" pattern="[0-9]" maxlength="1" required>
+
+          <label for="otp-6">Digit 6</label>
+          <input type="text" id="otp-6" name="otp6" inputmode="numeric" pattern="[0-9]" maxlength="1" required>
+        </fieldset>
+
+        <p>
+          Belum menerima kode?
+          <button type="button" aria-describedby="hitung-mundur">Kirim ulang code (OTP)</button>
+          <span id="hitung-mundur">60s</span>
+        </p>
+
+        <p>
+          <button type="submit">Verifikasi</button>
+        </p>
+
+        <p>
+          <a href="utama.html" role="button">verifikasi cepat</a>
+        </p>
+
+      </form>
+    </section>
+
+    <figure>
+      <img src="assets/images/robotduduk.png" alt="Ilustrasi robot asisten AI duduk sambil memegang tablet berisi centang">
+    </figure>
+
+  </main>
+
+</body>
+</html>

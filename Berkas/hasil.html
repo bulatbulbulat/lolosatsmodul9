@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Analysis Results</title>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="utama.html">&larr; Back</a>
+        </nav>
+        <h1>CV Analysis Results</h1>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Overall Score</h2>
+            <p>
+                <meter min="0" max="100" value="78">78%</meter>
+                <strong>78%</strong>
+            </p>
+        </section>
+
+        <section>
+            <fieldset>
+                <legend><h2>Data Pribadi</h2></legend>
+                <p>
+                    Nama: <br>
+                    Posisi: <br>
+                    Email: <br>
+                    Pengalaman: <br>
+                    Skills:
+                </p>
+            </fieldset>
+        </section>
+
+        <section>
+            <fieldset>
+                <legend><h2>ATS Compatibilitas</h2></legend>
+                <p>
+                    Jika file asli memakai tata letak dua kolom, ubah ke format satu
+                    kolom agar lebih mudah dibaca ATS. Contoh: susun semua bagian
+                    berurutan vertikal dari:
+                </p>
+                <ol>
+                    <li>Nama</li>
+                    <li>Kontak</li>
+                    <li>Ringkasan</li>
+                    <li>Pengalaman</li>
+                    <li>Pendidikan</li>
+                    <li>Keahlian</li>
+                    <li>Sertifikasi</li>
+                </ol>
+            </fieldset>
+        </section>
+
+        <section>
+            <fieldset>
+                <legend><h2>Missing Target Keywords</h2></legend>
+                <p>
+                    Tambahkan kata kunci berikut pada bagian Work Experience untuk
+                    meningkatkan kecocokan posisi target hingga 85%:
+                </p>
+                <ul>
+                    <li>User Research</li>
+                    <li>Usability Testing</li>
+                </ul>
+            </fieldset>
+        </section>
+
+        <p>
+            <button type="button" popovertarget="summary-popup">Lihat Ringkasan</button>
+        </p>
+        <p>
+            <a href="index.html">Kembali Ke Halaman utama</a>
+        </p>
+
+    </main>
+
+    <section id="summary-popup" popover>
+
+        <button type="button" popovertarget="summary-popup" popovertargetaction="hide" aria-label="Tutup">X</button>
+
+        <h2>Hebat! Kamu sudah melangkah satu tahap lebih dekat menuju karier impianmu.
+            Yuk, poles sedikit lagi CV-mu agar makin dilirik rekruter!</h2>
+
+        <fieldset>
+            <legend><h3>ATS Compatibility Rate</h3></legend>
+            <p>% Tingkat Keterbacaan ATS</p>
+            <p><strong>78%</strong></p>
+        </fieldset>
+
+        <fieldset>
+            <legend><h3>Grammar &amp; Typo Issue</h3></legend>
+            <p>Jumlah kesalahan ejaan yang ditemukan</p>
+            <p><strong>7</strong></p>
+        </fieldset>
+
+        <fieldset>
+            <legend><h3>Impact &amp; Formatting</h3></legend>
+            <p><strong>Cukup kuat dan berkasan</strong></p>
+        </fieldset>
+
+        <p>
+            <button type="button">Unduh Hasil Perbaikan</button>
+            <button type="button">Unggah CV Lain</button>
+        </p>
+
+    </section>
+
+</body>
+</html>

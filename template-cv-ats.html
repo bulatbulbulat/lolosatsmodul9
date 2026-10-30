@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Template CV ATS</title>
+
+<!-- Font Poppins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS (Play CDN) -->
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+<!-- REVISI 1: Tambahkan CDN Supabase JS Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { DEFAULT: '#1f3a75', deep: '#14275a' },
+          panel: '#d9d9d9',
+          mint: '#eafff0',
+        },
+        fontFamily: {
+          sans: ['Poppins', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+</head>
+
+<body class="m-0 min-h-screen bg-panel font-sans text-white">
+
+<div class="min-h-screen rounded-tl-[45%_110px] bg-gradient-to-br from-navy to-navy-deep px-4 pb-10 pt-6 sm:px-6 sm:pb-12 sm:pt-7">
+  <div class="mx-auto max-w-[960px]">
+    <nav class="mb-6">
+      <a href="index.html" class="inline-flex items-center text-sm font-medium text-brand-muted hover:text-white transition-colors duration-200 group">
+        <span class="transform group-hover:-translate-x-1 transition-transform duration-200 mr-2">&larr;</span> Kembali
+      </a>
+    </nav>
+    <main>
+      <!-- Filter & Search -->
+      <section aria-label="Filter dan pencarian" class="flex flex-wrap items-start gap-6 border-b border-white/70 pb-5">
+
+        <details class="group relative max-w-[300px] flex-[1_1_220px]">
+          <summary class="flex cursor-pointer list-none items-center justify-between bg-panel px-3.5 py-3 text-[17px] font-bold text-navy [&::-webkit-details-marker]:hidden">
+            Rumpun Karir
+            <span class="transition-transform duration-200 group-open:rotate-180">&#9662;</span>
+          </summary>
+          <!-- REVISI 2: Tambahkan id="filter-form" -->
+          <fieldset id="filter-form" class="absolute inset-x-0 top-full z-10 mt-1.5 border-0 bg-white px-3.5 py-2.5 text-navy shadow-xl">
+            <legend class="sr-only">Pilih rumpun karir</legend>
+            <label class="flex cursor-pointer items-center gap-2.5 py-1.5 text-sm font-semibold"><input type="checkbox" name="rumpun" value="it" class="h-4 w-4 accent-navy"> IT</label>
+            <label class="flex cursor-pointer items-center gap-2.5 py-1.5 text-sm font-semibold"><input type="checkbox" name="rumpun" value="pemasaran" class="h-4 w-4 accent-navy"> Pemasaran</label>
+            <label class="flex cursor-pointer items-center gap-2.5 py-1.5 text-sm font-semibold"><input type="checkbox" name="rumpun" value="keuangan" class="h-4 w-4 accent-navy"> Keuangan</label>
+            <label class="flex cursor-pointer items-center gap-2.5 py-1.5 text-sm font-semibold"><input type="checkbox" name="rumpun" value="hukum" class="h-4 w-4 accent-navy"> Hukum</label>
+            <label class="flex cursor-pointer items-center gap-2.5 py-1.5 text-sm font-semibold"><input type="checkbox" name="rumpun" value="teknik" class="h-4 w-4 accent-navy"> Teknik</label>
+            <label class="flex cursor-pointer items-center gap-2.5 py-1.5 text-sm font-semibold"><input type="checkbox" name="rumpun" value="desain" class="h-4 w-4 accent-navy"> Desain</label>
+            <label class="flex cursor-pointer items-center gap-2.5 py-1.5 text-sm font-semibold"><input type="checkbox" name="rumpun" value="pendidikan" class="h-4 w-4 accent-navy"> Pendidikan</label>
+            <label class="flex cursor-pointer items-center gap-2.5 py-1.5 text-sm font-semibold"><input type="checkbox" name="rumpun" value="kesehatan" class="h-4 w-4 accent-navy"> Kesehatan</label>
+          </fieldset>
+        </details>
+
+        <div class="flex-[2_1_320px] bg-panel focus-within:ring-[3px] focus-within:ring-white/50">
+          <label for="cari" class="sr-only">Cari Template</label>
+          <input type="search" id="cari" name="cari" placeholder="Cari Template.."
+                 class="w-full border-0 bg-transparent px-3.5 py-3 text-[17px] font-bold text-navy outline-none placeholder:text-navy placeholder:opacity-100">
+        </div>
+      </section>
+
+      <!-- REVISI 3: Kosongkan isi artikel statis dan beri id="template-container" -->
+      <section id="template-container" aria-label="Katalog template" class="mt-9 grid grid-cols-[repeat(auto-fit,minmax(210px,1fr))] gap-7">
+        <div class="col-span-full text-center py-10 text-white/80 font-medium">Memuat template dari database...</div>
+      </section>
+
+      <!-- REVISI 4: Beri id="template-counter" untuk teks jumlah -->
+      <p id="template-counter" class="mt-8 text-center text-sm font-semibold">Menampilkan 0 template</p>
+    </main>
+
+  </div>
+</div>
+
+<!-- REVISI 5: Tambahkan Script JavaScript untuk Integrasi Supabase, Search, & Filter -->
+<script type="module">
+  import { supabaseClient } from './js/supabaseClient.js';
+
+  const container = document.getElementById('template-container');
+  const counter = document.getElementById('template-counter');
+  const searchInput = document.getElementById('cari');
+  const filterCheckboxes = document.querySelectorAll('#filter-form input[type="checkbox"]');
+
+  async function fetchTemplates() {
+    let query = supabaseClient.from('cv_templates').select('*', { count: 'exact' });
+
+    // Filter berdasarkan teks pencarian
+    const searchTerm = searchInput.value.trim();
+    if (searchTerm !== '') {
+      query = query.ilike('title', `%${searchTerm}%`);
+    }
+
+    // Filter berdasarkan checkbox rumpun karir yang dicentang
+    const selectedRumpun = Array.from(filterCheckboxes)
+      .filter(cb => cb.checked)
+      .map(cb => cb.value);
+
+    if (selectedRumpun.length > 0) {
+      query = query.in('category', selectedRumpun);
+    }
+
+    const { data, count, error } = await query;
+
+    if (error) {
+      console.error('Gagal memuat data:', error);
+      container.innerHTML = `<div class="col-span-full text-center py-10 text-red-300">Gagal memuat data dari database.</div>`;
+      return;
+    }
+
+    renderTemplates(data, count);
+  }
+
+  function renderTemplates(templates, totalCount) {
+    if (!templates || templates.length === 0) {
+      container.innerHTML = `<div class="col-span-full text-center py-10 text-white/80">Tidak ada template yang ditemukan.</div>`;
+      counter.textContent = `Menampilkan 0 dari ${totalCount || 0} template`;
+      return;
+    }
+
+    container.innerHTML = '';
+    templates.forEach(item => {
+      const article = document.createElement('article');
+      article.className = "bg-panel px-[18px] pb-3.5 pt-[18px] text-navy";
+      
+      article.innerHTML = `
+        <figure class="m-0 flex aspect-[2/3] items-center justify-center bg-mint text-center text-[13px] text-[#6b8f78] overflow-hidden">
+          ${item.preview_image_url ? `<img src="${item.preview_image_url}" alt="${escapeHtml(item.title)}" class="w-full h-full object-cover">` : `<pre class="m-0 whitespace-pre-line font-[inherit]">Pratinjau\nTemplate</pre>`}
+        </figure>
+        <div class="mt-4 bg-navy text-white px-3 pb-3 pt-2.5">
+          <h2 class="m-0 text-[15px] font-bold">${escapeHtml(item.title)}</h2>
+          <p class="mb-2.5 mt-0.5 text-[12.5px] text-white/80">Cocok untuk: ${escapeHtml(item.category_label)}</p>
+          <div class="flex gap-2.5">
+            <button type="button" onclick="alert('Fitur pratinjau untuk: ${escapeHtml(item.title)}')" class="cursor-pointer border border-[#9aa3b8] bg-panel px-3 py-1.5 text-[13px] text-navy transition-colors hover:bg-white">Pratinjau</button>
+            <a href="${escapeHtml(item.file_url)}" target="_blank" class="cursor-pointer border border-[#9aa3b8] bg-panel px-3 py-1.5 text-[13px] text-navy transition-colors hover:bg-white text-center">Pratinjau</a>
+            </div>
+        </div>
+      `;
+      container.appendChild(article);
+    });
+
+    counter.innerHTML = `Menampilkan ${templates.length} dari ${totalCount} template &mdash; scroll untuk melihat lebih banyak`;
+  }
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>'"]/g, 
+      tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+    );
+  }
+
+  // Jalankan pencarian otomatis saat mengetik di input search
+  searchInput.addEventListener('input', fetchTemplates);
+
+  // Jalankan filter otomatis saat checkbox dicentang/dilepas
+  filterCheckboxes.forEach(cb => {
+    cb.addEventListener('change', fetchTemplates);
+  });
+
+  // Panggil fungsi saat pertama kali halaman dimuat
+  fetchTemplates();
+</script>
+
+</body>
+</html>

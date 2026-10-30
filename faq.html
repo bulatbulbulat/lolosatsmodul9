@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ & Pusat Bantuan - Panduan Karier</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#0F172A',
+                            card: '#1E293B',
+                            accent: '#2563EB',
+                            text: '#F8FAFC',
+                            muted: '#94A3B8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-bg text-brand-text min-h-screen font-sans antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Header / Navigation -->
+    <header class="max-w-4xl mx-auto px-4 pt-8 pb-4">
+        <nav class="mb-6">
+            <a href="index.html" class="inline-flex items-center text-sm font-medium text-brand-muted hover:text-white transition-colors duration-200 group">
+                <span class="transform group-hover:-translate-x-1 transition-transform duration-200 mr-2">&larr;</span> Kembali
+            </a>
+        </nav>
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white leading-tight">
+            FAQ & Pusat Bantuan
+        </h1>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 pb-16 space-y-8">
+        <!-- FAQ Section -->
+        <section class="bg-brand-card border border-slate-700/60 rounded-2xl p-6 md:p-8 shadow-xl space-y-6">
+            <h2 class="text-2xl font-bold text-white border-b border-slate-700/60 pb-3">Pertanyaan Umum (FAQ)</h2>
+            
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-400 mb-1">Berapa ukuran dan format file maksimal yang bisa diunggah ke sistem?</h3>
+                    <p class="text-brand-muted leading-relaxed">Sistem hanya menerima berkas berformat .PDF dengan ukuran maksimal 5MB. Pastikan file Anda telah sesuai sebelum mengunggah.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-400 mb-1">Mengapa muncul pesan "Format File Tidak Sesuai"?</h3>
+                    <p class="text-brand-muted leading-relaxed">Pesan error tersebut muncul jika Anda mengunggah file selain format .PDF (seperti .docx, .png, atau .jpg), atau jika ukuran file Anda melebihi batas 5MB.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-400 mb-1">Bagaimana cara mengecilkan ukuran file PDF yang terlalu besar?</h3>
+                    <p class="text-brand-muted leading-relaxed">Anda dapat menggunakan alat kompresi PDF daring (online PDF compressor) gratis untuk menurunkan ukuran berkas tanpa mengurangi kualitas teks secara signifikan.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-blue-400 mb-1">Apakah saya bisa memperbarui file CV atau dokumen yang sudah diunggah?</h3>
+                    <p class="text-brand-muted leading-relaxed">Bisa. Anda dapat mengunggah ulang dokumen baru selama periode pendaftaran atau pengajuan masih dibuka oleh sistem.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Help Center / Contact Section -->
+        <section class="bg-gradient-to-r from-blue-900/40 to-slate-800 border border-blue-500/30 rounded-2xl p-6 md:p-8 shadow-xl">
+            <h3 class="text-xl font-bold text-white mb-2">Butuh Bantuan Lebih Lanjut?</h3>
+            <p class="text-brand-muted mb-4 leading-relaxed">Jika Anda masih mengalami kendala teknis dalam mengunggah dokumen atau memiliki pertanyaan seputar panduan karir, tim dukungan kami siap membantu Anda:</p>
+            <ul class="space-y-2 text-slate-200">
+                <li class="flex items-center gap-2">
+                    <span class="text-blue-400">✉</span> <strong class="text-slate-400">Email:</strong> support@karier.com
+                </li>
+                <li class="flex items-center gap-2">
+                    <span class="text-blue-400">📞</span> <strong class="text-slate-400">Telepon:</strong> 123-456-7890
+                </li>
+            </ul>
+        </section>
+    </main>
+
+</body>
+</html>

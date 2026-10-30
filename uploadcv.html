@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LolosATS.id - Cek Skor ATS CV-mu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-custom-navy {
+            background-color: #1a2b56;
+        }
+        .bg-custom-dark {
+            background-color: #0b1428;
+        }
+        [popover]::backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(2px);
+        }
+    </style>
+</head>
+<body class="bg-[#131b2e] text-white font-sans min-h-screen flex flex-col justify-between selection:bg-blue-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="p-4 relative z-20">
+        <nav aria-label="Navigasi halaman">
+            <a href="index.html" class="inline-flex items-center text-gray-300 hover:text-white transition-colors text-2xl font-medium">
+                &larr; Kembali
+            </a>
+        </nav>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-4 relative overflow-hidden">
+        <!-- Hero Section -->
+        <section id="beranda" class="w-full max-w-[60%] bg-[#1d2b4e] rounded-2xl p-12 md:p-10 relative overflow-hidden shadow-2xl border border-slate-700/50 space-y-8">
+            
+            <!-- Latar Kurva Biru Terang (Visual Shape) -->
+            <div class="absolute -top-24 -left-24 w-[500px] h-[500px] md:w-[650px] md:h-[650px] bg-[#2b427c] rounded-full pointer-events-none -z-0 opacity-80"></div>
+
+            <!-- Konten Utama Center -->
+            <div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
+                
+                <h1 class="text-xl md:text-3xl font-bold tracking-wide text-white mb-1">
+                    Analisis CV Untuk Target Kerja
+                </h1>
+
+                <p class="text-md text-gray-300 font-mono tracking-widest my-2">
+                    ---CEK SEBELUM DIKIRIM---
+                </p>
+                
+                <h2 class="text-4xl md:text-3xl font-extrabold tracking-tight text-white mb-3 uppercase">
+                    LIHAT APA YANG DILIHAT MESIN
+                </h2>
+
+                <p class="text-md md:text-xl text-gray-200 max-w-xl leading-relaxed mb-6">
+                    Sebelum satu kata dibaca perekrut, Software memecah CV-mu menjadi kolom kolom data, Lepas PDFnya dan lihat proses itu terjadi -- sekitar tiga detik
+                </p>
+
+                <!-- Form Area Upload & Inputs -->
+                <div class="w-full max-w-lg space-y-4">
+                    
+                    <!-- Upload Box (White Capsule) -->
+                    <form>
+                        <fieldset class="relative">
+                            <legend class="sr-only">Unggah CV-mu Disini</legend>
+                            <input type="file" id="cv-upload" accept=".pdf,.docx" class="hidden peer">
+                            <label for="cv-upload" class="flex flex-col items-center justify-center bg-white text-gray-800 rounded-full py-4 px-6 cursor-pointer hover:bg-gray-100 transition-all shadow-lg group">
+                                <div class="w-10 h-12 mb-1 flex items-center justify-center">
+                                    <!-- Placeholder Ikon PDF -->
+                                    <svg class="w-10 h-10 text-blue-600 group-hover:scale-105 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                                    </svg>
+                                </div>
+                                <span class="font-bold text-xs md:text-sm text-center">Klik atau seret cv mu disini</span>
+                                <span class="text-[10px] text-gray-500 font-semibold uppercase">(PDF, MAX 5MB)</span>
+                            </label>
+                        </fieldset>
+                    </form>
+
+                    <!-- Form Input Posisi Pekerjaan -->
+                    <form class="text-left">
+                        <fieldset>
+                            <legend class="text-xs font-semibold text-gray-200 mb-1 ml-1">Posisi Pekerjaan</legend>
+                            <input type="text" id="posisi-pekerjaan" placeholder="Contoh : Web Developer" class="w-full bg-white text-gray-900 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400">
+                        </fieldset>
+                    </form>
+
+                    <!-- Form Input Deskripsi Pekerjaan -->
+                    <form class="text-left">
+                        <fieldset>
+                            <legend class="text-xs font-semibold text-gray-200 mb-1 ml-1">Deskripsi Pekerjaan</legend>
+                            <input type="text" id="deskripsi-pekerjaan" placeholder="Tempelkan deskripsi pekerjaan disini" class="w-full bg-white text-gray-900 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 placeholder-gray-400">
+                        </fieldset>
+                    </form>
+
+                    <!-- Tombol Action / Submit -->
+                    <div class="pt-2">
+                    <!-- Tombol Action / Submit (Kode Baru dengan Trigger Klik) -->
+                        <button type="button" onclick="handleStartAnalysis()" class="w-full bg-[#091124] hover:bg-[#050a15] text-white font-bold py-3 px-6 rounded-md transition-colors text-sm shadow-md border border-slate-700 cursor-pointer">
+                            Mulai Analisis CV
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- Trigger Popover untuk Error (Posisi Pojok Kanan Bawah) -->
+                <div class="w-full flex justify-end mt-4">
+                    <button type="button" popovertarget="summary-popup" class="text-[11px] text-gray-300 hover:text-white underline text-right max-w-[120px] leading-tight">
+                        jika file salah atau lebih dari 5mb
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Popover Modal Peringatan -->
+            <section id="summary-popup" popover class="m-auto p-0 bg-transparent backdrop:bg-black/60 border-none outline-none">
+                <div class="bg-[#091026] text-white p-8 md:p-10 rounded-2xl border border-blue-900/50 max-w-lg md:max-w-xl w-full shadow-2xl relative text-center flex flex-col items-center">
+                    
+                    <!-- Close Button -->
+                    <button type="button" popovertarget="summary-popup" popovertargetaction="hide" aria-label="Tutup" class="absolute top-4 right-4 text-gray-400 hover:text-white font-bold text-lg w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors">
+                        ✕
+                    </button>
+
+                    <!-- Ilustrasi Peringatan / Robot (Sekarang Bebas Membesar) -->
+                    <figure class="mb-6 w-full flex justify-center">
+                        <img src="/assets/images/!!!.png" alt="Ilustrasi robot peringatan kesalahan format file" class="w-48 h-48 md:w-56 md:h-56 object-contain mx-auto drop-shadow-lg">
+                    </figure>
+
+                    <!-- Teks Peringatan -->
+                    <p class="font-black text-base md:text-lg leading-relaxed tracking-wide text-white uppercase mb-8 px-4">
+                        FORMAT FILE TIDAK SESUAI, HARAP UNGGAH FILE BERFORMAT .PDF DENGAN UKURAN MAKS 5MB!!!
+                    </p>
+
+                    <!-- Tombol Lanjutkan -->
+                    <div class="w-full">
+                        <a href="utama.html" class="inline-block w-full bg-white text-gray-900 font-extrabold py-3 px-6 rounded-xl hover:bg-gray-200 transition-colors text-base shadow-md">
+                            Lanjutkan
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Maskot Robot (Posisi Kanan/Kiri Sesuai Layout Dekstop) -->
+            <div class="static md:absolute bottom-0 left-4 z-10 mt-6 md:mt-0 flex justify-center pointer-events-none">
+                <img src="./assets/images/Hero.webp" alt="Maskot robot asisten LolosATS.id" class="w-44 md:w-56 object-contain drop-shadow-xl">
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-4 text-center text-xs text-gray-500 relative z-20">
+        <p>&copy; 2026 LolosATS.id</p>
+    </footer>
+
+<!-- Script Pendukung -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabaseClient.js"></script>
+    <script src="js/cvUpload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        // Konfigurasi worker untuk PDF.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Email - Modul 7</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            pill: '#01082F',
+                            top: '#223A70',
+                            bottom: '#0D1B45',
+                            box: '#C9CDD9',
+                            outline: '#F5E6A8'
+                        }
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        html { background-color: #EAF0FB; }
+        .bg-deco {
+            background:
+                radial-gradient(circle, rgba(27, 49, 104, 0.12) 1.2px, transparent 1.5px) 0 0 / 22px 22px,
+                linear-gradient(135deg, #F4F7FD 0%, #DCE6F8 55%, #C9D8F3 100%);
+        }
+    </style>
+</head>
+<body class="font-poppins min-h-screen flex items-center justify-center p-3 pr-8 pb-8 sm:p-6 sm:pr-14">
+
+    <div class="bg-deco fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+        <div class="absolute -top-24 -left-24 w-[380px] h-[380px] rounded-full bg-[#223A70]/25 blur-3xl"></div>
+        <div class="absolute top-1/3 -right-32 w-[420px] h-[420px] rounded-full bg-sky-300/40 blur-3xl"></div>
+        <div class="absolute -bottom-32 left-1/4 w-[360px] h-[360px] rounded-full bg-[#1B3168]/20 blur-3xl"></div>
+    </div>
+
+    <main class="relative w-full max-w-[640px] bg-gradient-to-b from-brand-top to-brand-bottom rounded-[10px] border border-black/80 text-white px-5 pt-6 pb-16 sm:px-8 sm:pt-10 sm:pb-24">
+
+        <header class="bg-brand-pill rounded-full w-full sm:w-[64%] mx-auto min-h-[110px] sm:min-h-[150px] flex flex-col items-center justify-center gap-1.5 sm:gap-2.5 py-4">
+            <img src="assets/images/send-mail.png" alt="Ikon amplop email terkirim" class="w-10 sm:w-[64px] h-auto">
+            <h1 class="text-xl sm:text-[28px] leading-tight font-bold">Verifikasi Email</h1>
+        </header>
+
+        <section aria-labelledby="judul-konfirmasi" class="text-center mt-5 sm:mt-6">
+
+            <header>
+                <h2 id="judul-konfirmasi" class="text-lg sm:text-[22px] leading-tight font-bold">Konfirmasi Login Anda</h2>
+                <p id="petunjuk-otp" class="mt-2 text-xs sm:text-sm font-medium leading-snug max-w-[400px] mx-auto">
+                    Kami telah mengirim kode verifikasi 6 digit ke email
+                    <strong class="font-medium">user@gmail.com</strong>, silakan periksa email Anda.
+                </p>
+            </header>
+
+            <form action="#" method="post" class="mt-5 sm:mt-6">
+
+                <fieldset aria-describedby="petunjuk-otp" class="flex justify-between gap-1.5 sm:gap-0 max-w-[440px] mx-auto">
+                    <legend class="sr-only">Kode verifikasi 6 digit</legend>
+
+                    <label for="otp-1" class="sr-only">Digit 1</label>
+                    <input type="text" id="otp-1" name="otp1" inputmode="numeric" pattern="[0-9]" maxlength="1" autocomplete="one-time-code" required class="otp-input w-full max-w-[54px] h-10 sm:h-[50px] bg-brand-box text-slate-900 text-center text-lg sm:text-xl font-semibold rounded-[10px] focus:outline-none focus:ring-2 focus:ring-brand-outline">
+
+                    <label for="otp-2" class="sr-only">Digit 2</label>
+                    <input type="text" id="otp-2" name="otp2" inputmode="numeric" pattern="[0-9]" maxlength="1" required class="otp-input w-full max-w-[54px] h-10 sm:h-[50px] bg-brand-box text-slate-900 text-center text-lg sm:text-xl font-semibold rounded-[10px] focus:outline-none focus:ring-2 focus:ring-brand-outline">
+
+                    <label for="otp-3" class="sr-only">Digit 3</label>
+                    <input type="text" id="otp-3" name="otp3" inputmode="numeric" pattern="[0-9]" maxlength="1" required class="otp-input w-full max-w-[54px] h-10 sm:h-[50px] bg-brand-box text-slate-900 text-center text-lg sm:text-xl font-semibold rounded-[10px] focus:outline-none focus:ring-2 focus:ring-brand-outline">
+
+                    <label for="otp-4" class="sr-only">Digit 4</label>
+                    <input type="text" id="otp-4" name="otp4" inputmode="numeric" pattern="[0-9]" maxlength="1" required class="otp-input w-full max-w-[54px] h-10 sm:h-[50px] bg-brand-box text-slate-900 text-center text-lg sm:text-xl font-semibold rounded-[10px] focus:outline-none focus:ring-2 focus:ring-brand-outline">
+
+                    <label for="otp-5" class="sr-only">Digit 5</label>
+                    <input type="text" id="otp-5" name="otp5" inputmode="numeric" pattern="[0-9]" maxlength="1" required class="otp-input w-full max-w-[54px] h-10 sm:h-[50px] bg-brand-box text-slate-900 text-center text-lg sm:text-xl font-semibold rounded-[10px] focus:outline-none focus:ring-2 focus:ring-brand-outline">
+
+                    <label for="otp-6" class="sr-only">Digit 6</label>
+                    <input type="text" id="otp-6" name="otp6" inputmode="numeric" pattern="[0-9]" maxlength="1" required class="otp-input w-full max-w-[54px] h-10 sm:h-[50px] bg-brand-box text-slate-900 text-center text-lg sm:text-xl font-semibold rounded-[10px] focus:outline-none focus:ring-2 focus:ring-brand-outline">
+                </fieldset>
+
+                <div class="flex items-start justify-between max-w-[440px] mx-auto mt-2 text-[11px] sm:text-sm font-medium text-left">
+                    <span>Belum menerima kode?</span>
+                    <div class="text-right leading-snug">
+                        <button type="button" id="kirim-ulang" aria-describedby="hitung-mundur" disabled class="font-medium focus:outline-none focus-visible:underline hover:underline disabled:cursor-not-allowed disabled:no-underline">
+                            Kirim ulang code (OTP)
+                        </button>
+                        <div id="hitung-mundur" aria-live="polite" class="text-[11px] sm:text-sm">60s</div>
+                    </div>
+                </div>
+
+                <div class="mt-3 sm:mt-4 flex justify-center">
+                    <button type="submit" class="w-full sm:w-[330px] h-10 sm:h-11 bg-brand-bottom border border-brand-outline hover:bg-brand-pill text-white font-semibold text-sm sm:text-base rounded-[3px] transition-colors">
+                        Verifikasi
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <figure class="absolute -right-6 -bottom-8 sm:-right-[58px] sm:-bottom-[26px] w-24 sm:w-[197px] z-20 pointer-events-none">
+            <img src="assets/images/robotduduk.png" alt="Ilustrasi robot asisten AI duduk sambil memegang tablet berisi centang" class="w-full h-auto object-contain">
+        </figure>
+
+    </main>
+    <script src="js/auth-validation.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Popup</title>
+</head>
+<body>
+
+    <main>
+        <h1>CV Analysis</h1>
+
+        <button type="button" popovertarget="loading-popup">Analyze CV</button>
+    </main>
+
+    <section id="loading-popup" popover>
+        <h2>Loading</h2>
+        <p>
+            <progress value="60" max="100" aria-label="Loading progress">60%</progress>
+        </p>
+        <button type="button" popovertarget="loading-popup" popovertargetaction="hide">Close</button>
+    </section>
+
+</body>
+</html>

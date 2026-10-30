@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LolosATS.id - Cek Skor ATS CV-mu</title>
+</head>
+<body>
+
+    <header>
+        <nav aria-label="Navigasi halaman">
+            <a href="index.html">&larr; Kembali</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="beranda">
+            <h1>Analisis CV Untuk Target Kerja</h1>
+
+            <p>---CEK SEBELUM DIKIRIM---</p>
+            
+            <h1>LIHAT APA YANG DILIHAT MESIN</h1>
+
+            <p>Sebelum satu kata dibaca perekrut, Software memecah CV-mu menjadi kolom kolom data, Lepas PDFnya dan lihat proses itu terjadi -- sekitar tiga detik</p>
+
+            <form>
+                <fieldset>
+                    <legend>Unggah CV-mu Disini</legend>
+                    <input type="file" id="cv-upload" accept=".pdf,.docx">
+                    <label for="cv-upload">Seret dan letakkan file CV atau telusuri perangkat</label>
+                </fieldset>
+            </form>
+
+            <form>
+                <fieldset>
+                    <legend>Posisi Pekerjaan</legend>
+                    <input type="text" id="posisi-pekerjaan" placeholder="Contoh : Web Developer">
+                </fieldset>
+            </form>
+
+            <form>
+                <fieldset>
+                    <legend>Deskripsi Pekerjaan</legend>
+                    <input type="text" id="deskripsi-pekerjaan" placeholder="deskripsi pekerjaan">
+                </fieldset>
+            </form>
+
+            <p>
+                <a href="hasil.html">Masuk</a>
+            </p>
+
+            <p>
+                <button type="button" popovertarget="summary-popup">Jika file tidak sesuai</button>
+            </p>
+
+            <section id="summary-popup" popover>
+                <button type="button" popovertarget="summary-popup" popovertargetaction="hide" aria-label="Tutup">X</button>
+
+                <div>
+                    <figure>
+                        <img src="/assets/images/!!!.png" alt="Ilustrasi robot peringatan kesalahan format file">
+                    </figure>
+            
+                        <a>FORMAT FILE TIDAK SESUAI, HARAP UNGGAH FILE BERFORMAT .PDF DENGAN UKURAN MAKS 5MB!!!</a>
+
+                    <p>
+                        <a href="herlang.html">Lanjutkan</a>
+                    </p>
+                </div>
+            </section>
+
+              <img src="./assets/images/Hero.webp" alt="Maskot robot asisten LolosATS.id">
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 LolosATS.id</p>
+    </footer>
+
+</body>
+</html>
