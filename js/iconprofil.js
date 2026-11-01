@@ -16,20 +16,44 @@ function el(tag, className, text) {
     return node;
 }
 
+const ICON_SVG =
+    '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+
+// Supabase menyimpan foto akun Google di user_metadata (avatar_url atau picture)
+function avatarUrl(user) {
+    const meta = user.user_metadata || {};
+    const url = meta.avatar_url || meta.picture || '';
+    return /^https:\/\//.test(url) ? url : '';
+}
+
 function profileMenu(user) {
     const meta = user.user_metadata || {};
     const name = meta.full_name || (user.email || '').split('@')[0] || 'Pengguna';
 
     const wrap = el('div', 'relative');
 
-    const btn = el('button', 'w-10 h-10 rounded-full bg-white text-brand-dark flex items-center justify-center ring-2 ring-slate-500 hover:ring-blue-300 transition focus:outline-none focus-visible:ring-blue-300');
+    const btn = el('button', 'w-10 h-10 rounded-full bg-white text-brand-dark flex items-center justify-center overflow-hidden ring-2 ring-slate-500 hover:ring-blue-300 transition focus:outline-none focus-visible:ring-blue-300');
     btn.type = 'button';
     btn.setAttribute('aria-haspopup', 'menu');
     btn.setAttribute('aria-expanded', 'false');
     btn.setAttribute('aria-label', 'Menu profil');
-    btn.innerHTML =
-        '<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-        '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+
+    function showIcon() { btn.innerHTML = ICON_SVG; }
+
+    // Foto profil akun Google (jika ada); kalau tidak ada atau gagal dimuat, pakai ikon orang
+    const photo = avatarUrl(user);
+    if (photo) {
+        const img = document.createElement('img');
+        img.src = photo;
+        img.alt = '';
+        img.referrerPolicy = 'no-referrer'; // foto Google kadang gagal tampil tanpa ini
+        img.className = 'w-full h-full object-cover';
+        img.addEventListener('error', showIcon);
+        btn.appendChild(img);
+    } else {
+        showIcon();
+    }
 
     const menu = el('div', 'absolute right-0 mt-2 w-60 bg-white text-slate-800 rounded-xl shadow-lg ring-1 ring-black/5 overflow-hidden z-50');
     menu.setAttribute('role', 'menu');
