@@ -1,5 +1,5 @@
 // js/cvUpload.js
-import { supabaseClient } from './supabaseClient.js';
+import { supabaseClient2 as supabaseClient } from './supabaseClient.js';
 
 // Pasang event listener otomatis saat halaman selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
