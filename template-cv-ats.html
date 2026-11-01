@@ -151,8 +151,7 @@
           <h2 class="m-0 text-[15px] font-bold">${escapeHtml(item.title)}</h2>
           <p class="mb-2.5 mt-0.5 text-[12.5px] text-white/80">Cocok untuk: ${escapeHtml(item.category_label)}</p>
           <div class="flex gap-2.5">
-            <button type="button" onclick="alert('Fitur pratinjau untuk: ${escapeHtml(item.title)}')" class="cursor-pointer border border-[#9aa3b8] bg-panel px-3 py-1.5 text-[13px] text-navy transition-colors hover:bg-white">Pratinjau</button>
-            <a href="${escapeHtml(item.file_url)}" target="_blank" class="cursor-pointer border border-[#9aa3b8] bg-panel px-3 py-1.5 text-[13px] text-navy transition-colors hover:bg-white text-center">Pratinjau</a>
+            <a href="${escapeHtml(item.file_url)}" target="_blank" class="cursor-pointer border border-[#9aa3b8] bg-panel px-3 py-1.5 text-[13px] text-navy transition-colors hover:bg-white text-center rounded-lg">Pratinjau</a>
             </div>
         </div>
       `;
