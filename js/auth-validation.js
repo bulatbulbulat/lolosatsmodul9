@@ -88,6 +88,14 @@
         });
     }
 
+    function dispatch(name, values, ui) {
+        var h = window.authHandlers && window.authHandlers[name];
+        if (h) { h(values, ui); return; }
+        var keys = Object.keys(ui.fields);
+        ui.setError(ui.fields[keys[keys.length - 1]],
+            'Layanan autentikasi belum siap. Muat ulang halaman (Ctrl+Shift+R) dan periksa koneksi internet.');
+    }
+
     //Aturan validasi
 
     function validateEmail(value) {
@@ -104,17 +112,23 @@
         var pass = document.getElementById('login-password');
         var form = email.closest('form');
 
+        var emailField = createField(email, '.relative');
+        var passField = createField(pass, '.relative');
+
         bindForm(form, [
             {
-                field: createField(email, '.relative'),
+                field: emailField,
                 validate: function () { return validateEmail(email.value); }
             },
             {
-                field: createField(pass, '.relative'),
+                field: passField,
                 validate: function () { return pass.value ? '' : 'Password wajib diisi.'; }
             }
         ], function () {
-            window.location.href = 'uploadcv.html';
+            dispatch('login',
+                { email: email.value.trim(), password: pass.value },
+                { form: form, fields: { email: emailField, password: passField }, setError: setError, clearError: clearError },
+                'uploadcv.html');
         });
     }
 
@@ -127,9 +141,13 @@
         var setuju = document.getElementById('daftar-setuju');
         var form = nama.closest('form');
 
+        var namaField = createField(nama, '.relative');
+        var emailField = createField(email, '.relative');
+        var passField = createField(pass, '.relative');
+
         bindForm(form, [
             {
-                field: createField(nama, '.relative'),
+                field: namaField,
                 validate: function () {
                     var v = nama.value.trim();
                     if (!v) { return 'Nama lengkap wajib diisi.'; }
@@ -138,11 +156,11 @@
                 }
             },
             {
-                field: createField(email, '.relative'),
+                field: emailField,
                 validate: function () { return validateEmail(email.value); }
             },
             {
-                field: createField(pass, '.relative'),
+                field: passField,
                 validate: function () {
                     var v = pass.value;
                     if (!v) { return 'Password wajib diisi.'; }
@@ -162,7 +180,10 @@
                 }
             }
         ], function () {
-            window.location.href = 'verifikasi-email.html';
+            dispatch('daftar',
+                { nama: nama.value.trim(), email: email.value.trim(), password: pass.value },
+                { form: form, fields: { nama: namaField, email: emailField, password: passField }, setError: setError, clearError: clearError },
+                'verifikasi-email.html');
         });
     }
 
@@ -229,7 +250,13 @@
                 }
             }
         ], function () {
-            window.location.href = 'uploadcv.html';
+            dispatch('otp',
+                { code: inputs.map(function (el) { return el.value; }).join('') },
+                {
+                    form: form, fields: { otp: field }, setError: setError, clearError: clearError,
+                    reset: function () { inputs.forEach(function (el) { el.value = ''; }); inputs[0].focus(); }
+                },
+                'uploadcv.html');
         });
     }
 
