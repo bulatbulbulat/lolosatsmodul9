@@ -79,19 +79,19 @@
                     
                     <!-- Sisi Kiri: Form Dropzone & Button CTA -->
                     <div class="lg:col-span-6 flex flex-col items-center lg:items-stretch">
-                        <form class="w-full">
-                            <fieldset class="border-2 border-dashed border-slate-400 bg-slate-300/40 hover:bg-slate-300/60 rounded-2xl p-8 text-center cursor-pointer transition-all w-full">
-                                <legend class="sr-only">Unggah CV-mu Disini</legend>
-                                <input type="file" id="cv-upload" accept=".pdf,.docx" class="hidden" onchange="uploadAndScanCV('cv-upload')">
-                                <label for="cv-upload" class="cursor-pointer flex flex-col items-center justify-center space-y-4">
+                        <!-- Sisi Kiri: Tautan Dropzone & Tombol CTA -->
+                        <div class="lg:col-span-6 flex flex-col items-center lg:items-stretch">
+                            <!-- Ubah form/fieldset menjadi tag a dengan href ke halaman tujuan -->
+                            <a href="uploadcv.html" class="w-full block">
+                                <div class="border-2 border-dashed border-slate-400 bg-slate-300/40 hover:bg-slate-300/60 rounded-2xl p-8 text-center cursor-pointer flex flex-col items-center justify-center space-y-4 transition">
                                     <svg class="w-12 h-12 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 0115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                                     </svg>
                                     <span class="text-lg sm:text-xl font-bold text-slate-800">Unggah CV-mu Disini</span>
-                                    <span class="text-sm text-slate-600">Seret dan letakkan file CV atau telusuri perangkat (.pdf, .docx)</span>
-                                </label>
-                            </fieldset>
-                        </form>
+                                    <span class="text-sm text-slate-600">Klik untuk mulai unggah atau telusuri perangkat (.pdf, .docx)</span>
+                                </div>
+                            </a>
+                        </div>
 
                         <div class="mt-6 text-center lg:text-left">
                             <a href="uploadcv.html" class="inline-block px-8 py-3 bg-brand-blue text-white font-semibold rounded-xl shadow-md hover:bg-opacity-90 transition-all text-base">
@@ -273,7 +273,7 @@
                         <ul class="space-y-2 text-slate-300 text-sm">
                             <li><a href="#beranda" class="hover:text-white transition-colors">Beranda</a></li>
                             <li><a href="#cara-kerja" class="hover:text-white transition-colors">Cara Kerja</a></li>
-                            <li><a href="#fitur-unggulan" class="hover:text-white transition-colors">Fitur Unggulan</a></li>
+                            <li><a href="#fitur" class="hover:text-white transition-colors">Fitur Unggulan</a></li>
                         </ul>
                     </div>
 
