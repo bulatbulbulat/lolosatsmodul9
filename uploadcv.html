@@ -86,7 +86,7 @@
                             </fieldset>
                         </form>
                         
-                        <!-- Elemen Display Nama File yang Dipilih -->
+                        <!-- Elemen Display Nama File yang Dipilih (Client Complain Fix) -->
                         <div id="file-display-container" class="hidden text-left bg-blue-950/40 border border-blue-500/30 rounded-lg p-3 flex items-center justify-between text-xs md:text-sm">
                             <div class="flex items-center space-x-2 truncate">
                                 <svg class="w-5 h-5 text-blue-400 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
@@ -94,7 +94,7 @@
                                 </svg>
                                 <span id="file-name-display" class="font-medium text-gray-200 truncate"></span>
                             </div>
-                            <button type="button" id="remove-file-btn" class="text-red-400 hover:text-red-300 ml-2 font-bold text-xs px-2 py-1 rounded bg-red-950/50">Hapus</button>
+                            <button type="button" id="remove-file-btn" class="text-red-400 hover:text-red-300 ml-2 font-bold text-xs px-2 py-1 rounded bg-red-950/50 cursor-pointer">Hapus</button>
                         </div>
 
                         <form class="text-left">
@@ -112,7 +112,7 @@
                         </form>
 
                         <div class="pt-2">
-                            <button type="button" onclick="handleStartAnalysis()" class="w-full bg-[#091124] hover:bg-[#050a15] text-white font-bold py-3 px-6 rounded-md transition-colors text-sm shadow-md border border-slate-700 cursor-pointer">
+                            <button type="button" id="btn-analisis" class="w-full bg-[#091124] hover:bg-[#050a15] text-white font-bold py-3 px-6 rounded-md transition-colors text-sm shadow-md border border-slate-700 cursor-pointer">
                                 Mulai Analisis CV
                             </button>
                         </div>
@@ -161,12 +161,21 @@
         <p>&copy; 2026 LolosATS.id</p>
     </footer>
 
-    <!-- display file-->
+    <!-- Script PDF.js untuk membaca file PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        // Konfigurasi worker PDF.js
+        if (window.pdfjsLib) {
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
+    </script>
+
+    <!-- Script Pendukung -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         lucide.createIcons();
-        
-    
+
+        // Script untuk menampilkan nama file yang di-upload agar client bisa melihatnya
         const cvUploadInput = document.getElementById('cv-upload');
         const fileDisplayContainer = document.getElementById('file-display-container');
         const fileNameDisplay = document.getElementById('file-name-display');
@@ -194,9 +203,9 @@
             });
         }
     </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/supabaseClient.js"></script>
-    <script src="js/cvUpload.js"></script>
+    <script type="module" src="js/cvUpload.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="js/uploadtoast.js"></script>
 </body>
